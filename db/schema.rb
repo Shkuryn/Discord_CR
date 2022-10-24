@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_24_162752) do
+ActiveRecord::Schema.define(version: 2022_10_24_170637) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 2022_10_24_162752) do
     t.index ["developer_id"], name: "index_merge_requests_on_developer_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "developer_id", null: false
+    t.integer "merge_request_id", null: false
+    t.boolean "done"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["developer_id"], name: "index_reviews_on_developer_id"
+    t.index ["merge_request_id"], name: "index_reviews_on_merge_request_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -66,4 +76,6 @@ ActiveRecord::Schema.define(version: 2022_10_24_162752) do
 
   add_foreign_key "developers", "teams"
   add_foreign_key "merge_requests", "developers"
+  add_foreign_key "reviews", "developers"
+  add_foreign_key "reviews", "merge_requests"
 end
