@@ -54,7 +54,9 @@ end
 
 gem 'discordrb'
 # gem "figaro"
+gem 'activeadmin'
+gem 'devise'
 gem 'dotenv-rails'
 gem 'pry'
 gem 'pry-rails'
-
+gem 'sqlite3'
